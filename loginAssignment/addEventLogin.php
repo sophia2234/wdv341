@@ -194,10 +194,10 @@ if(isset($_POST["submit"]))
 //if form is valid, print confirmation page and sent form information to wdv341 database
 if($validForm)
 {
-	$hostname = "localhost";
-	$username = "joekan_wdv341";
-	$password = "wdv341";
-	$database = "joekan_wdv341";
+	$serverName = "localhost";
+	$username = "sophia22_wdv341";
+	$password = "wdv341128916!";
+	$database = "sophia22_wdv341";
 	
 	try 
 	{
