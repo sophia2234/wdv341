@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+	<head>
+<script src="modernizr-2.js"></script>
+<title>PHP Emailer</title>
+<link rel="stylesheet" href="../style.css" type="text/css">
+		<link rel="stylesheet" href="../../wedding.css" type="text/css">
+		
+<style type="text/css">
+header {
+  text-align: center;
+  margin: 6px;
+}  
+
+footer {
+  clear: both;
+  text-align: center;
+  margin-top: 20px;
+  padding: 6px;
+  font-size: .5em;
+ }
+
+.title{
+  font-size: 3em;
+}
+
+left {
+  float: left;
+}
+
+form{
+margin-top: 1em;
+border: solid 2px gold;
+padding: 1em;
+font-size: 16px;
+}
+#formcontainer{
+width: 100%;
+float: right;
+}
+.labelfloatleft label{
+width: 100px;
+margin-right: 15px;
+color: black;
+float: left;
+text-align: right;
+}
+.labelfloatleft input{
+display: block;
+}
+fieldset{
+margin-bottom: 1em;
+border: solid 2px #FFBFA4;
+background-color: #FFE6DC;
+display: block;
+}
+legend{
+color: black;
+padding: 0.1px;
+}
+label{
+color: black;
+}
+input.text{
+background-color: white;
+}
+fieldset.group{
+float: none;
+border: 0;
+margin: 0;
+padding: 0;
+}
+textarea{
+border: solid 2px black;
+display: block;
+}
+select{
+display: block;
+}
+input.button{
+color: navy;
+text-transform: uppercase;
+font-weight: bold;
+padding: 4px;
+background-color: #FFBFA4;
+border: 1px solid black;
+display: inline;
+}
+footer{
+font-size: 16px;
+}
+</style>
+
+</head>
+
+<body>
+<h1>Contact Us!</h1>
+		<div class="headerArea">
+				<div class="topnav" id="myTopnav">
+					  <a href="../index.php" class="active">Home</a>
+					  <a href="" class="active">Day of Events</a>
+					<a href="../events.php" class="active">Events</a>
+					 <a href="formEmailer.html" class="active">Contact Us!</a>
+					<a href="../logout.php" class="active">Logout</a>
+					  <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+				</div>
+			</div>
+<div id = "formcontainer">
+<form id="survey" name="survey" method="post" action="formEmailer.php">
+<fieldset><legend>Contact Information</legend>
+<label for="firstname">First Name</label>
+<input type="text" name="firstname" id="firstname" class="text" placeholder="John"/>
+<label for="lastname">Last Name</label>
+<input type="text" name="lastname" id="lastname" class="text" placeholder="Doe"/>
+	<br>
+<label for="email">Email Address</label>
+<input type="email" name="emailaddress" id="emailaddress" size="40" class="text" placeholder="name@anywhere.com"/></fieldset>
+<fieldset class="group">
+</fieldset>
+<fieldset><legend>Send a message</legend>
+<label for="subject">Subject</label>
+<select name="subject" id="subject">
+<option value="info">Wedding Day Information</option>
+<option value="visit">Catering Questions</option>
+<option value="other">Other</option>
+</select>
+<label for="message">Message</label>
+<textarea name="message" rows="10" cols="45"></textarea>
+</fieldset>
+<input type="submit" value="Send Information" class="button"/>
+<input type="reset" value="Reset" class="button"/>
+	</form>
+</div> <!-- end formcontainer -->
+</body>
+</html>

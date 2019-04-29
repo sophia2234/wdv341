@@ -1,0 +1,196 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>S&T</title>
+	<link rel="stylesheet" href="https://use.typekit.net/nts2seq.css">
+	<link rel="stylesheet" href="wedding.css">
+	<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+	</head>
+<body>
+	<img src="images/lights.png" class="waterColorsFlowers" alt="Water Color flowers">
+	<h1>The Wedding Party</h1>
+			<div class="headerArea">
+				<div class="topnav" id="myTopnav">
+					  <a href="../weddingPHP.html" class="active">Home</a>
+					  <a href="weddingParty.html">The Wedding Party</a>
+					  <a href="../theVenue.html">The Venue</a>
+					  <a href="login/emailer copy/formEmailer.html">Contact Us!</a>
+					  <a href="login/login.php">Sign In!</a> 
+					  <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+				</div>
+			</div>
+	
+	<script>
+		
+		$(document).ready(function() 
+		{
+			$.get("weddingParty.php"); // Creates JSON objects
+			
+			// Create an Array that contains the selected options
+			var maidArray = {"":"Select a Bridesmaid","taylor": "Taylor Richards","brookelyn": "Brookelyn Kippel","shrae": "Shrae Garrigan"};
+			var manArray = {"":"Select a Groomsman","micheal": "Michael Gundacker", "cyrus": "Cyrus Brucker", "rusty": "Rusty Shackleford"};
+			
+			// Create a function that clears all data when a new radio button is clicked
+			function clear() {
+				$("#name").html("");
+				$("#time").html("");
+				$("#img").html("");
+			}
+
+			// Create a function where it gets the items in the array when a radio button is selected
+			$("[type=radio]").click(function() {
+				var selectedRadioBtn = $("input:checked").val();
+				
+				if(selectedRadioBtn == "maids")
+				{
+					clear();
+					itemArray = maidArray;
+				}
+				else
+				{
+					clear();
+					itemArray = manArray;
+				}
+				
+				var select = $('#select');
+				$('option', select).remove();
+				$.each(itemArray, function (value, text) {
+					var option = new Option(text, value);
+					select.append($(option));
+				});
+			});
+			
+			// AJAX call function
+			$("#select").change(function() {
+				//alert("test");
+				$selectedChoice = $(this).val(); // Gets selected value
+				//alert($selectedChoice);
+				if($selectedChoice != "none"){
+					//alert("ifstatement");
+					if($selectedChoice == "taylor") { //Gets data from JSON files
+						//alert("test");
+						$.ajax({
+							type:'GET',
+							dataType:'json',
+							url:'Maid of Honor.js', 
+							success:function(returnObject){
+								//alert("cupCake")
+								//alert(returnObject);
+								//alert(returnObject.cupcake_desc);
+								//var cupcakeObject = JSON.parse(returnObject); A parse is not required since the ajax call will parse the object for you.
+								$("#name").html(returnObject.maid_name);
+								$("#time").html(returnObject.maid_time);
+								//alert(returnObject.cupcake_img)
+								$("#img").html("<img src='" + returnObject.maid_img + "' />");
+							}
+							//success: function(data, textStatus ){
+      						//alert('request successful');
+    						//},
+							//fail: function(xhr, textStatus, errorThrown){
+       						//alert('request failed'); }
+						})
+
+					}
+
+					else if($selectedChoice == "brookelyn") { 
+						$.ajax({
+							type:'GET',
+							dataType:'json',
+							url:'Bridesmaid.js',
+							success:function(returnObject){
+								$("#name").html(returnObject.maid_name);
+								$("#time").html(returnObject.maid_time);
+								$("#img").html("<img src='" + returnObject.maid_img + "' />");
+							}
+						})
+
+					}
+
+					else if($selectedChoice == "shrae") { 
+						$.ajax({
+							type:'GET',
+							dataType:'json',
+							url:'Bridesmaid2.js',
+							success:function(returnObject){
+								$("#name").html(returnObject.maid_name);
+								$("#time").html(returnObject.maid_time);
+								$("#img").html("<img src='" + returnObject.maid_img + "' />");
+							}
+						})
+
+					}
+
+					else if($selectedChoice == "michael") { 
+						$.ajax({
+							type:'GET',
+							dataType:'json',
+							url:'BestMan.js',
+							success:function(returnObject){
+								$("#name").html(returnObject.man_name);
+								$("#time").html(returnObject.man_time);
+								$("#img").html("<img src='" + returnObject.man_img + "' />");
+							}
+						})
+
+					}
+
+
+					else if($selectedChoice == "cyrus") { 
+						$.ajax({
+							type:'GET',
+							dataType:'json',
+							url:'Groomsman.js',
+							success:function(returnObject){
+								$("#name").html(returnObject.man_name);
+								$("#time").html(returnObject.man_time);
+								$("#img").html("<img src='" + returnObject.man_img + "' />");
+							}
+						})
+
+					}
+
+					else if($selectedChoice == "rusty") { 
+						$.ajax({
+							type:'GET',
+							dataType:'json',
+							url:'Groomsman2.js',
+							success:function(returnObject){
+								$("#name").html(returnObject.man_name);
+								$("#time").html(returnObject.man_time);
+								$("#img").html("<img src='" + returnObject.man_img + "' />");
+							}
+						})
+
+					}
+
+					else
+					{
+						$("#name").html("");
+						$("#time").html("");
+						$("#img").html("");
+					};
+			}
+		});
+	});
+	</script>
+	<div class="containerOfParty">
+		<div class="radioButtons">
+		<input type="radio" name="radio" id="maids" value="maids" />
+	<label for="maids">Bridesmaids</label>
+	<input type="radio" name="radio" id="mans" value="mans" />
+	<label for= "mans">Groomsman</label>
+	</div>
+  <p>Make your choice: 
+    <label class="customerSelect">
+      <select name="select" id="select">
+      </select>
+    </label>
+  </p>
+	<p>Name: <span id= "name"></span></p>
+  <p>Relation to the Couple: <span id= "time"></span></p>
+  <p>Image</p>
+  <span id= "img"></span>
+	</div>
+</body>
+</html>
